@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="breadcrumbs">
+    <div class="container">
+        <div class="pt-1 pb-1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a th:href="'/service/list'">Servisy</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Klienti</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+</html>

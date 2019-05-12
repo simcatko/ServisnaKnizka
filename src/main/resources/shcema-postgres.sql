@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS users;
+CREATE TABLE users(id serial PRIMARY KEY, meno VARCHAR(100), heslo VARCHAR(100));

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Record</title>
+</head>
+<body>
+<div th:insert="fragments :: navigation"></div>
+<div th:insert="record/breadcrumbs :: breadcrumbs(${serviceId}, ${clientId})"></div>
+<div class="container">
+    <form method="post" th:action="@{/record}" th:object="${record}">
+        <div class="form-group">
+            <label for="type">Typ</label>
+            <select class="form-control" id="type" name="type" th:field="*{type}">
+                <option th:each="type: ${types}" th:value="${type.getValue()}" th:text="${type.getMeno()}"/>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Cena</label>
+            <input class="form-control" type="number" name="price" id="price" th:field="*{price}"/>
+        </div>
+        <div class="form-group">
+            <label for="type">Poznamka</label>
+            <textarea class="form-control" id="poznamka" name="poznamka" th:field="*{poznamka}"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="type">Datum</label>
+            <input class="form-control" type="date" id="date" name="date" th:field="*{date}"/>
+        </div>
+        <input type="hidden" name="carId" th:field="*{carId}"/>
+        <input type="submit" value="odoslat" class="btn btn-success"/>
+    </form>
+</div>
+
+</body>
+</html>

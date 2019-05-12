@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="fragments :: navigation"></div>
+<div th:insert="car/breadcrumbs :: breadcrumbs(${serviceId})"></div>
+<div class="container">
+    <div class="p-2">
+        <a th:href="'/car?clientId=' + ${clientId}" class="btn btn-success">
+            Pridat
+        </a>
+    </div>
+
+    <table class="table table-striped table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Rok Vyroby</th>
+            <th>SPZ</th>
+            <th>VIN</th>
+            <th>Farba</th>
+            <th>Znacka</th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        <tr th:each="car: ${cars}">
+            <td th:text="${car.getId()}"/>
+            <td th:text="${car.getRokVyroby()}"/>
+            <td th:text="${car.getSpz()}"/>
+            <td th:text="${car.getVin()}"/>
+            <td th:text="${car.getFarba()}"/>
+            <td th:text="${car.getZnacka()}"/>
+            <td>
+                <a th:href="'/record/list?carId=' + ${car.getId()}">
+                    Zaznamy
+                </a>
+            </td>
+            <td>
+                <a th:href="'/car/zmazat?id=' + ${car.getId()}+'&clientId='+${car.getClientId()}">
+                    Zmazat
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

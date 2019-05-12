@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="fragments :: navigation"></div>
+<div th:insert="car/breadcrumbs :: breadcrumbs(${serviceId})"></div>
+<div class="container">
+    <form method="post" th:action="@{/car}" th:object="${car}">
+        <div class="form-group">
+            <label for="sp">spz:</label>
+            <input class="form-control" id="sp" name="spz" th:field="*{spz}">
+        </div>
+        <div class="form-group">
+            <label for="vn">vin:</label>
+            <input class="form-control" id="vn" name="vin" th:field="*{vin}">
+        </div>
+        <div class="form-group">
+            <label for="fb">farba:</label>
+            <input class="form-control" id="fb" name="farba" th:field="*{farba}">
+        </div>
+        <div class="form-group">
+            <label for="zn">znacka:</label>
+            <input class="form-control" id="zn" name="znacka" th:field="*{znacka}">
+        </div>
+        <div class="form-group">
+            <label for="rv">rok Vyroby:</label>
+            <input class="form-control" id="rv" name="rokVyroby" th:field="*{rokVyroby}">
+        </div>
+
+        <input type="hidden" th:field="*{clientId}">
+        <input type="submit" value="odoslat" class="btn btn-success">
+
+    </form>
+</div>
+</body>
+</html>
