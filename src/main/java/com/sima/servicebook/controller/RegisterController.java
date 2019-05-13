@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class RegisterController {
 
@@ -19,15 +21,21 @@ public class RegisterController {
     }
 
     @GetMapping("/register")
-    public String render(Model model) {
+    public String render(Model model, HttpSession session) {
+        model.addAttribute("error", session.getAttribute("error"));
         model.addAttribute("registrationform", new User());
         return "register";
     }
 
     @PostMapping("/register")
-    public String submit(@ModelAttribute User user) {
-        userRepository.save(user);
-        return "registerresult";
+    public String submit(@ModelAttribute User user, HttpSession session) {
+        if (user.getHeslo().length() > 0 ) {
+            userRepository.save(user);
+            return "registerresult";
+        } else {
+            session.setAttribute("error", 1);
+            return "redirect:/register";
+        }
 
     }
 }

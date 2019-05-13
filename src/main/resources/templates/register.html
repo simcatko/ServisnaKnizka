@@ -11,6 +11,7 @@
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
+            <div  th:if = "${error}" class = "alert alert-success">  Zadajte heslo </div>
             <h1>Registracny formular</h1>
             <form method="post" th:action="@{/register}" th:object="${registrationform}">
                 <div class="form-group">
